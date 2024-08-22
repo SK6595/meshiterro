@@ -6,15 +6,17 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+  is_matching_login_user
+  @user = User.find(params[:id])
   end
-  
+ 
   def update
+    is_matching_login_user
     @user = User.find(params[:id])
     @user.update(user_params)
     redirect_to user_path(@user.id)
   end
-
+  
   private
 
   def user_params
